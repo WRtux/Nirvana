@@ -12,12 +12,13 @@ More information can be found in [this topic](https://tieba.baidu.com/p/59059255
 
 > **The development of this game engine is almost suspended right now for I'm studying for the College Entrance Examination.** Sorry.
 
-Only important changes are logged at here.
+The engine's development was launched in August 2018, and the repository was moved to GitHub in September 2019. Thus, older versions of it are not uploaded.  
+*Important changes* of the engine since 2019 are listed below.
 
 ### Latest version
 * Separate `WindowElement` implementation from window control
 * Rewrite the coordination control
-* Add some comments for main logic
+* Add some JavaDoc for main logic (Chinese)
 
 ## Code
 

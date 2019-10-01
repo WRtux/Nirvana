@@ -9,6 +9,11 @@ import nirvana.MIDletNirvana;
 import nirvana.display.DisplayWrapper;
 import nirvana.util.Position.Coord;
 
+/**
+ * 游戏的崩溃提示类，只能通过调用{@link #handle(MIDlet)}创建一个实例。
+ * 在收到未被catch的异常后，弹出崩溃信息。
+ * @author Wilderness Ranger
+ */
 public final class ErrorHandler extends Canvas implements Runnable {
 	
 	private static ErrorHandler instance;
@@ -105,11 +110,11 @@ public final class ErrorHandler extends Canvas implements Runnable {
 	}
 	
 	protected void showNotify() {
-		KeyboardManager.clearFlags();
+		KeyboardManager.clearKeys();
 		this.shown = true;
 	}
 	protected void hideNotify() {
-		KeyboardManager.clearFlags();
+		KeyboardManager.clearKeys();
 		this.shown = false;
 	}
 	protected void keyPressed(int key) {

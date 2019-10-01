@@ -5,13 +5,14 @@ import javax.microedition.midlet.MIDlet;
 import nirvana.control.GameHandler;
 
 /**
- * Nirvana的MIDlet类。
+ * Nirvana的MIDlet类，只能创建一个实例。
  * 本类类似于main函数。
+ * TODO 迁移模式设定、帧长、内存信息与log方法至{@link GameHandler}。
  * @author Wilderness Ranger
  */
 public final class MIDletNirvana extends MIDlet {
 	
-	/** =====静态变量===== */
+	/* =====静态变量===== */
 	
 	/** MIDlet类的示例。 */
 	private static MIDletNirvana instance; 
@@ -21,15 +22,15 @@ public final class MIDletNirvana extends MIDlet {
 	/** 表现模式设定。处于表现模式时，Nirvana不会主动调用垃圾收集，并会生成更多缓存以提升性能。 */
 	protected static boolean perfMode = true;
 	
-	/** 帧长，以毫秒为单位。{@link GameHandler}参考此数据控制游戏线程。（常用值：30, 40, 50） */
-	protected static int frameLen = 40;
+	/** 帧长，以毫秒为单位。{@link GameHandler}参考此数据控制游戏线程。（常用值：25, 33, 50） */
+	protected static int frameLen = 33;
 	
 	/** 总计内存，以字节为单位。 */
 	protected static int totMem;
 	/** 可用内存，以字节为单位。 */
 	protected static int freeMem;
 	
-	/** =====静态Getters===== */
+	/* =====静态Getters===== */
 	
 	/** 返回Nirvana是否处于调试模式{@link #debugMode}。 */
 	public static boolean isDebugMode() {
@@ -54,7 +55,7 @@ public final class MIDletNirvana extends MIDlet {
 		return freeMem;
 	}
 	
-	/** =====静态Setters===== */
+	/* =====静态Setters===== */
 	
 	/** 设置Nirvana的调试模式{@link #debugMode}。 */
 	public static void setDebugMode(boolean mode) {
@@ -70,7 +71,7 @@ public final class MIDletNirvana extends MIDlet {
 		frameLen = len;
 	}
 	
-	/** =====静态方法===== */
+	/* =====静态方法===== */
 	
 	/**
 	 * 输出控制台消息。类似于{@code System.out.println()}。
@@ -129,9 +130,9 @@ public final class MIDletNirvana extends MIDlet {
 		instance.destroyApp(false);
 	}
 	
-	/** =====类实现===== */
+	/* =====类实现===== */
 	
-	/** MIDlet构造方法（必须为公有的）。 */
+	/** MIDlet构造方法（必须为公有的）。应由系统构造MIDlet。 */
 	public MIDletNirvana() {
 		super();
 		if(instance == null) instance = this;

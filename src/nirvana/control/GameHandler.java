@@ -14,18 +14,22 @@ import nirvana.display.scene.Scene;
 import nirvana.util.Position.Coord;
 
 /**
- * 游戏的Handler类。
+ * 游戏的Handler静态类，不能创建实例。
  * 在启动后加载游戏配置和资源，创建游戏线程。
  * 游戏线程定期向场景管理器{@link Scene}产生游戏tick，同时控制渲染的唤起。
  * @author Wilderness Ranger
  */
 public final class GameHandler {
 	
+	/** 被Handle的MIDlet。 */
 	private static MIDlet midlet;
 	
+	/** Handler的显示状态。 */
 	protected static boolean shown = false;
+	/** 加载状态，为{@code true}时显示加载中提示。 */
 	protected static boolean loading = false;
 	
+	/** 当前的调试信息。 */
 	protected static String[] debugInfo = new String[] {"Nirvana Beta - Debug", "", ""};
 	
 	protected static Runnable thread = new Runnable() {
@@ -70,12 +74,12 @@ public final class GameHandler {
 	protected static Canvas canvas = new Canvas() {
 		
 		protected void showNotify() {
-			KeyboardManager.clearFlags();
+			KeyboardManager.clearKeys();
 			GameHandler.shown = true;
 		}
 		
 		protected void hideNotify() {
-			KeyboardManager.clearFlags();
+			KeyboardManager.clearKeys();
 			GameHandler.shown = false;
 		}
 		
@@ -124,6 +128,7 @@ public final class GameHandler {
 		
 	};
 	
+	/** @deprecated */
 	private GameHandler() {}
 	
 	public static void handle(MIDlet midlet) {
