@@ -16,6 +16,9 @@ import nirvana.util.Position.Coord;
  */
 public final class ErrorHandler extends Canvas implements Runnable {
 	
+	/* =====静态变量===== */
+	
+	/** Handler类的示例。 */
 	private static ErrorHandler instance;
 	
 	public static boolean locked = false;
@@ -25,29 +28,32 @@ public final class ErrorHandler extends Canvas implements Runnable {
 	
 	protected boolean shown = false;
 	
-	public static final class ProcessBreakException extends RuntimeException {
+	/**
+	 * 发生崩溃时，抛出的异常类。
+	 * 为防止被{@code catch(Exception)}块处理，此类实际继承的是{@link Error}。
+	 * @author Wilderness Ranger
+	 */
+	public static final class ProcessBreakException extends Error {
 		
 		public final Class catcher;
 		public final Exception exception;
 		
-		public ProcessBreakException(Class catcher, Exception exception) {
+		public ProcessBreakException(Class catcher, Exception ex) {
 			super();
 			this.catcher = catcher;
-			this.exception = exception;
+			this.exception = ex;
 			throw this;
 		}
-		public ProcessBreakException(Exception exception) {
+		public ProcessBreakException(Exception ex) {
 			super();
 			this.catcher = null;
-			this.exception = exception;
+			this.exception = ex;
 			throw this;
 		}
 		
 	}
 	
-	private ErrorHandler() {
-		super();
-	}
+	/* =====静态方法===== */
 	
 	public static ErrorHandler handle(MIDlet midlet) {
 		if(instance != null) return instance; 
@@ -66,32 +72,39 @@ public final class ErrorHandler extends Canvas implements Runnable {
 			+ "\n\nMore information will be in console if you are in \\1debug mode\\0.";
 	}
 	
-	public static void riseUncaught(Exception exception) {
-		if(exception == null) return;
+	public static void riseUncaught(Exception ex) {
+		if(ex == null) return;
 		locked = true;
 		System.gc();
 		if(MIDletNirvana.isDebugMode()) {
 			MIDletNirvana.log("Uncaught exception! Detail information:");
-			exception.printStackTrace();
+			ex.printStackTrace();
 		} MIDletNirvana.log("Nirvana crashed because of an uncaught exception.");
-		errInfo = "Error was not caught.\n\\1" + exception.toString() + "\\0";
+		errInfo = "Error was not caught.\n\\1" + ex.toString() + "\\0";
 		makeField();
 	}
 	
-	public static void riseError(Class catcher, Exception exception) {
-		if(catcher == null) riseUncaught(exception);
-		if(exception == null) return;
+	public static void riseError(Class catcher, Exception ex) {
+		if(catcher == null) riseUncaught(ex);
+		if(ex == null) return;
 		locked = true;
 		System.gc();
 		String classname = catcher.getName();
 		if(MIDletNirvana.isDebugMode()) {
 			MIDletNirvana.log("Nirvana crashed! Detail information:");
 			MIDletNirvana.log("Error caught by: " + classname);
-			exception.printStackTrace();
+			ex.printStackTrace();
 		} else MIDletNirvana.log("Nirvana crashed!");
-		errInfo = "Error caught by: " + classname + "\n\\1" + exception.toString() + "\\0";
+		errInfo = "Error caught by: " + classname + "\n\\1" + ex.toString() + "\\0";
 		makeField();
-		throw new ProcessBreakException(catcher, exception);
+		throw new ProcessBreakException(catcher, ex);
+	}
+	
+	/* =====类实现===== */
+	
+	/** Handler构造方法。在调用{@link #handle(MIDlet)}时自动构造。 */
+	private ErrorHandler() {
+		super();
 	}
 	
 	public void run() {

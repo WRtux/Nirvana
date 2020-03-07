@@ -21,6 +21,8 @@ import nirvana.util.Position.Coord;
  */
 public final class GameHandler {
 	
+	/* =====静态变量===== */
+	
 	/** 被Handle的MIDlet。 */
 	private static MIDlet midlet;
 	
@@ -30,9 +32,9 @@ public final class GameHandler {
 	protected static boolean loading = false;
 	
 	/** 当前的调试信息。 */
-	protected static String[] debugInfo = new String[] {"Nirvana Beta - Debug", "", ""};
+	protected static final String[] debugInfo = new String[] {"Nirvana Beta - Debug", "", ""};
 	
-	protected static Runnable thread = new Runnable() {
+	protected static final Runnable thread = new Runnable() {
 		
 		private long synchro;
 		
@@ -71,7 +73,7 @@ public final class GameHandler {
 		
 	};
 	
-	protected static Canvas canvas = new Canvas() {
+	protected static final Canvas canvas = new Canvas() {
 		
 		protected void showNotify() {
 			KeyboardManager.clearKeys();
@@ -128,8 +130,7 @@ public final class GameHandler {
 		
 	};
 	
-	/** @deprecated */
-	private GameHandler() {}
+	/* =====静态方法===== */
 	
 	public static void handle(MIDlet midlet) {
 		if(GameHandler.midlet == null) GameHandler.midlet = midlet;
@@ -173,5 +174,10 @@ public final class GameHandler {
 	public static void notifyLoadEnd() {
 		loading = false;
 	}
+	
+	/* =====类实现===== */
+	
+	/** @deprecated */
+	private GameHandler() {}
 	
 }

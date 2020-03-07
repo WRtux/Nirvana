@@ -35,9 +35,9 @@ public final class KeyboardManager {
 	/* =====静态变量===== */
 	
 	/** 新动作的按键列表。 */
-	protected static boolean[] impacts = new boolean[KEY_NUM];
+	protected static final boolean[] impacts = new boolean[KEY_NUM];
 	/** 按下键的游戏tick数列表。如果键未按下，则对应元素为-1。 */
-	protected static int[] ticks = new int[KEY_NUM];
+	protected static final int[] ticks = new int[KEY_NUM];
 	
 	/** 当前按着的键。如果按下了多个键，则认为未按键。 */
 	protected static int current = KEY_VOID;
