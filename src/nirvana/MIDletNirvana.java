@@ -68,6 +68,7 @@ public final class MIDletNirvana extends MIDlet {
 	
 	/** 设置当前帧长{@link #frameLen}。 */
 	public static void setFrameLength(int len) {
+		if(len <= 0) throw new IllegalArgumentException("Illegaal frame length.");
 		frameLen = len;
 	}
 	
