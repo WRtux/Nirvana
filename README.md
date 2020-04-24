@@ -13,6 +13,7 @@ More information can be found in [this topic](https://tieba.baidu.com/p/59059255
 > **The development of this game engine is almost suspended right now for I'm studying for the College Entrance Examination.** Sorry.
 
 > Classes in `nirvana.data`, `nirvana.display`, `nirvana.game.map` and `wapi.fontin` are in the private repository for their JavaDoc is unfinished.
+> **Recent updates has uploaded some of these classes to the repository.**
 
 The engine's development was launched in August 2018, and the repository was moved to GitHub in September 2019. Thus, older versions of it are not uploaded.  
 *Important changes* of the engine since 2019 are listed below.
