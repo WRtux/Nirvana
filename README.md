@@ -10,8 +10,8 @@ More information can be found in [this topic](https://tieba.baidu.com/p/59059255
 
 ## Status
 
-> The last modification of the source is on 2019-10-14.
-> **The development of this game engine has been suspended for I'm studying for the College Entrance Examination.** Sorry.
+> The development of this game engine has started again.
+> The last modification of the source is on 2020-07-23.
 
 > All the classes (include compile-failed and deprecated ones) has been moved to this public repository, but most of them don't have JavaDoc.
 
